@@ -3,16 +3,27 @@
 #define linhas(m) (sizeof(m) / sizeof(m[0]))
 #define colunas(m) (sizeof(m[0]) / sizeof(m[0][0]))
 
-#define ENTRADA 6
-#define OCULTO 2
+#define ENTRADA 2
+#define OCULTO 3
 #define SAIDA 1
 
-int main (){
-    //cada entrada é uma linha de uma matriz coluna
-    float entradas[ENTRADA][1];
-    //pesos de uma entrada ficam organizados numa mesma coluna
-    float pesos[OCULTO][ENTRADA];
+int redeNeural();
 
-    inserirAleatorio(ENTRADA, 1, entradas);
-    imprimirMatriz(ENTRADA, 1, entradas);
+int main (){
+    redeNeural();
+}
+
+int redeNeural(){
+    //cada entrada é uma linha de uma matriz coluna
+    Matriz* entradas = m_construct(ENTRADA, 1, true);
+
+    //pesos de uma entrada ficam organizados numa mesma coluna
+    Matriz* pesos = m_construct(ENTRADA, OCULTO, true);
+
+    m_imprimir(entradas);
+    m_imprimir(pesos);
+
+    Matriz* respostas = m_multiplicar(entradas, pesos);
+    m_imprimir(respostas);
+
 }
